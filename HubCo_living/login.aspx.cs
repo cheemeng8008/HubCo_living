@@ -20,6 +20,7 @@ namespace HubCo_living
             {
                 Response.Write("<script language=javascript>alert('Please fill in all fields.')</script>");
             }
+
             else
             {
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\cheem\source\repos\HubCo_living\HubCo_living\App_Data\db.mdf;Integrated Security=True;");
