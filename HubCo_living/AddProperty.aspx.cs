@@ -25,10 +25,10 @@ namespace HubCo_living
             String postcode = txtPostcode.Text;
             String city = txtCity.Text;
             String state = ddlState.SelectedValue;
-            int roomID=0;
+            int roomID = 0;
 
             //Make sure all fields filled up
-            if (unitType.Length == 0 || address.Length == 0 || unitNo.Length == 0 || postcode.Length == 0 || city.Length == 0 || state.Length == 0)
+            if (unitType.Length == 0 || address.Length == 0 || unitNo.Length == 0 || postcode.Length == 0 || city.Length == 0 || state.Equals("0"))
             {
                 Response.Write("<script language=javascript>alert('Please fill in all fields.')</script>");
             }
@@ -62,7 +62,6 @@ namespace HubCo_living
                                 if (IsLetter(city))
                                 {
 
-                                    String fullAddress = address + ", " + postcode + ' ' + city + ' ' + state + ", Malaysia";
 
                                     //Verify at least 4 pictures uploaded
                                     if (verifyFileNumber() == false)
@@ -97,10 +96,10 @@ namespace HubCo_living
                                                     cmd.Parameters.AddWithValue("@status", RadioButton2.Text);
                                                 cmd.ExecuteNonQuery();
                                                 con.Close();
-                                                
 
 
-                                                
+
+
 
                                                 // Get property id
                                                 cmd = new SqlCommand("select roomID from Rooms where unitNumber=@unitNumber and address=@address ", con);
@@ -142,7 +141,7 @@ namespace HubCo_living
                                                                         con1.Open();
                                                                         cmdInImg.ExecuteNonQuery();
                                                                         con1.Close();
-                                                                        
+
                                                                     }
                                                                 }
                                                             }
@@ -150,7 +149,7 @@ namespace HubCo_living
                                                     }
                                                     Response.Write("<script language=javascript>alert('Room Successfully Added.')</script>");
                                                 }
-                                                
+
 
                                             }
                                             catch (Exception ex)
@@ -195,7 +194,7 @@ namespace HubCo_living
             }
         }
 
-        private bool verifyFileType()
+        protected bool verifyFileType()
         {
             bool filetype = true;
 

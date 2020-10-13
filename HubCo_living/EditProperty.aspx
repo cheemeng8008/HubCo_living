@@ -5,13 +5,56 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style>
+        .propImg{
+            border:2px solid white;
+            width:100px;
+            height:100px;
+        }
+        .propImg:hover{
+            border:2px solid red;
+        }
+        .propImg:active{
+            border:2px solid red;
+        }
+     
+
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
             <h2>Edit Property</h2>
 
+            <div>
+                <asp:Repeater ID="imgRepeater" runat="server">
+                    <ItemTemplate>
+                        
+                             <asp:ImageButton ImageUrl='<%# GetImage(Eval("imageContent"))  %>' runat="server" CssClass="propImg"  OnCommand="Image_Select" CommandName="ImageSelect" CommandArgument='<%# Eval("imageID") %>' ToolTip="Delete"/>
+                             
+                          
+                    </ItemTemplate>
+                </asp:Repeater>
+                <br />
+                
+                <br />
+                <table>
+                    <tr>
+                        <td><asp:FileUpload ID="filUpPictures" runat="server" AllowMultiple="true"/></td>
+                    </tr>
+                    <tr>
+                        <td><asp:Button ID="btnAddPhoto" runat="server" OnClick="btnAddPhoto_Click" Text="Add Photo" />
+                            <asp:Label ID="lblRoomId" runat="server" Text="Label" Visible="False"></asp:Label>
+                            <asp:Label ID="lblPicNum" runat="server" Text="Label" Visible="False"></asp:Label>
+                        </td>
+                    </tr>
+                </table>
+                
+            </div>
+
+
             <table>
+                
                 <tr>
                     <td><label>Address : </label></td>
                     <td><asp:TextBox ID="txtAddress" runat="server"></asp:TextBox></td>
@@ -73,7 +116,7 @@
                 </tr>
             </table>
             <br />
-            <asp:Button ID="btnCancel" runat="server" OnClientClick="JavaScript:window.history.back(1); return false;" Text="Back" />
+            <asp:Button ID="btnCancel" runat="server"  Text="Back" OnClick="btnCancel_Click" />
 &nbsp;
             <asp:Button ID="btnConfirm" runat="server" Text="Update" OnClick="btnConfirm_Click" />
         </div>
